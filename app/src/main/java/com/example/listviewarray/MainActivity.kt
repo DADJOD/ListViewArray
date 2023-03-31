@@ -1,6 +1,7 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.listviewarray
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,14 +9,15 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListAdapter
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import com.activeandroid.query.Select
 
+@Suppress("UNUSED_PARAMETER")
 class MainActivity : AppCompatActivity() {
     private lateinit var myAdapter: ListAdapter
     private lateinit var button: Button
     private lateinit var list: ListView
     private val data = arrayListOf("one", "two", "three")
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +42,8 @@ class MainActivity : AppCompatActivity() {
 
         sepulka.save()
 
-        val ses = Select().from(Sepulka::class.java).execute<Sepulka>()
+        val ses : List<Sepulka> = Select().from(Sepulka::class.java).execute()
         Log.d("happySDK", "$ses")
-    }
-
-    companion object {
     }
 
     fun onButtonClick(view: View) {
